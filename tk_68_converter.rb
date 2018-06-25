@@ -11,8 +11,11 @@ https://youtu.be/xCeEghc9GQk
 
 require 'tk'
 
-class Converter
-  def initialize(pack_standard)
+module Converter
+
+  extend self
+
+  def begin(pack_standard)
     root = window_set
     top = TkFrame.new root
     prompt_choice top, pack_standard
@@ -26,6 +29,7 @@ class Converter
     button_exit    top, pack_standard
 
     top.pack fill: :both, side: :top
+    nil
   end
 
   private
@@ -110,5 +114,5 @@ def pack_standard
   {padx: 10, pady: 10}
 end
 
-Converter.new pack_standard
+Converter.begin pack_standard
 Tk.mainloop

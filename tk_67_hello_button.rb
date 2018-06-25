@@ -11,18 +11,22 @@ https://youtu.be/OGU-OQD5aWY
 
 require 'tk'
 
-class HelloName
-  def initialize(pack_standard)
+module HelloName
+
+  extend self
+
+  def begin(pack_standard)
     root = window_set
     top = TkFrame.new root
     @text = TkVariable.new
 
-    prompt_name top, pack_standard
-    entry_name top, pack_standard, @text
+    prompt_name  top, pack_standard
+    entry_name   top, pack_standard, @text
     button_hello top, pack_standard
-    button_exit top, pack_standard
+    button_exit  top, pack_standard
 
     top.pack fill: :both, side: :top
+    nil
   end
 
   private
@@ -55,6 +59,7 @@ class HelloName
     TkEntry.new top, textvariable: text do
       pack pack_standard
     end
+    nil
   end
 
   def hello
@@ -82,5 +87,5 @@ def pack_standard
   {padx: 50, pady: 30}
 end
 
-HelloName.new pack_standard
+HelloName.begin pack_standard
 Tk.mainloop
