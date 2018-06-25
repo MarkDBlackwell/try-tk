@@ -12,19 +12,13 @@ https://youtu.be/OGU-OQD5aWY
 require 'tk'
 
 class HelloName
-  def initialize
-    pack_standard = {padx: 50, pady: 30}
-
+  def initialize(pack_standard)
     root = window_set
     top = TkFrame.new root
-
-    question_name_insert top, pack_standard
-
     @text = TkVariable.new
-    TkEntry.new top, textvariable: @text do
-      pack pack_standard
-    end
 
+    prompt_name top, pack_standard
+    entry_name top, pack_standard, @text
     button_hello top, pack_standard
     button_exit top, pack_standard
 
@@ -32,6 +26,17 @@ class HelloName
   end
 
   private
+
+  def button_exit(top, pack_standard)
+    TkButton.new top do
+      text 'Exit'
+      command do
+        proc exit
+      end
+      pack pack_standard
+    end
+    nil
+  end
 
   def button_hello(top, pack_standard)
     proc_hello = proc do
@@ -46,15 +51,10 @@ class HelloName
     nil
   end
 
-  def button_exit(top, pack_standard)
-    TkButton.new top do
-      text 'Exit'
-      command do
-        proc exit
-      end
+  def entry_name(top, pack_standard, text)
+    TkEntry.new top, textvariable: text do
       pack pack_standard
     end
-    nil
   end
 
   def hello
@@ -63,7 +63,7 @@ class HelloName
     nil
   end
 
-  def question_name_insert(top, pack_standard)
+  def prompt_name(top, pack_standard)
     TkLabel.new top do
       text 'Name?'
       pack pack_standard
@@ -78,5 +78,9 @@ class HelloName
   end
 end
 
-HelloName.new
+def pack_standard
+  {padx: 50, pady: 30}
+end
+
+HelloName.new pack_standard
 Tk.mainloop
