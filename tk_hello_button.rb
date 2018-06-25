@@ -37,6 +37,7 @@ class HelloName
 
     TkButton.new top do
       text 'Say Hello'
+# The syntax, 'command{proc hello}' didn't work, here.
       command proc_hello
       pack pack_standard
     end
