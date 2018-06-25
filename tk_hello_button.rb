@@ -13,11 +13,10 @@ require 'tk'
 
 class HelloName
   def initialize
-    pack_standard = {padx: 50, pady: 30}
     proc_hello = proc do
       hello
     end
-    @text = TkVariable.new
+    pack_standard = {padx: 50, pady: 30}
 
     root = TkRoot.new do
       title 'Hello, name'
@@ -30,7 +29,9 @@ class HelloName
       pack pack_standard
     end
 
-    @entry = TkEntry.new top, textvariable: @text do
+    @text = TkVariable.new
+
+    TkEntry.new top, textvariable: @text do
       pack pack_standard
     end
 
