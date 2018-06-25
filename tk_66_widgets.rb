@@ -18,11 +18,11 @@ module Widgets
     root = TkRoot.new do
       title 'Multiple Widgets'
     end
-    button root
+    button       root
     widget_entry root
-    label root
-    text root
-    message root
+    label        root
+    text         root
+    message      root
     nil
   end
 
@@ -57,7 +57,7 @@ module Widgets
       width 20
       height 5
       pack side: :left
-      insert 'end', 'Text field text'
+      insert :end, 'Text field text'
     end
     nil
   end

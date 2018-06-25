@@ -22,7 +22,9 @@ module Converter
     @text_celsius    = TkVariable.new
     @text_fahrenheit = TkVariable.new
 
-    [@text_fahrenheit, @text_celsius].each{|e| entry_temperature_scale top, pack_standard, e}
+    [@text_fahrenheit, @text_celsius].each do |e|
+      entry_temperature_scale top, pack_standard, e
+    end
 
     button_convert top, pack_standard
     button_exit    top, pack_standard
