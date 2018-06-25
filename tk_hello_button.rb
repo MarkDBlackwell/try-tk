@@ -13,35 +13,40 @@ require 'tk'
 
 class HelloName
   def initialize
-    proc_hello = proc do
-      hello
-    end
     pack_standard = {padx: 50, pady: 30}
 
-    root = TkRoot.new do
-      title 'Hello, name'
-    end
-
+    root = window_set
     top = TkFrame.new root
 
-    TkLabel.new top do
-      text 'Name?'
-      pack pack_standard
-    end
+    question_name_insert top, pack_standard
 
     @text = TkVariable.new
-
     TkEntry.new top, textvariable: @text do
       pack pack_standard
     end
 
+    button_hello top, pack_standard
+    button_exit top, pack_standard
+
+    top.pack fill: :both, side: :top
+  end
+
+  private
+
+  def button_hello(top, pack_standard)
+    proc_hello = proc do
+      hello
+    end
     TkButton.new top do
       text 'Say Hello'
 # The syntax, 'command{proc hello}' didn't work, here.
       command proc_hello
       pack pack_standard
     end
+    nil
+  end
 
+  def button_exit(top, pack_standard)
     TkButton.new top do
       text 'Exit'
       command do
@@ -49,15 +54,27 @@ class HelloName
       end
       pack pack_standard
     end
-
-    top.pack fill: :both, side: :top
+    nil
   end
-
-  private
 
   def hello
 # Simply prepending to @text.value didn't work, here.
     @text.value = @text.value.prepend 'Hello, '
+    nil
+  end
+
+  def question_name_insert(top, pack_standard)
+    TkLabel.new top do
+      text 'Name?'
+      pack pack_standard
+    end
+    nil
+  end
+
+  def window_set
+    TkRoot.new do
+      title 'Hello, name'
+    end
   end
 end
 
