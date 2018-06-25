@@ -17,6 +17,9 @@ class Converter
     top = TkFrame.new root
     prompt_choice top, pack_standard
 
+    @text_celsius    = TkVariable.new
+    @text_fahrenheit = TkVariable.new
+
     entry_fahrenheit top, pack_standard
     entry_celsius    top, pack_standard
 
@@ -28,9 +31,18 @@ class Converter
 
   private
 
+  def align_to_celsius
+    -align_to_fahrenheit
+  end
+
+  def align_to_fahrenheit
+    32.0
+  end
+
   def button_convert(top, pack_standard)
     proc_convert = proc do
-      convert
+      calculate_celsius
+      calculate_fahrenheit
     end
     TkButton.new top do
       text 'Convert'
@@ -51,32 +63,33 @@ class Converter
     nil
   end
 
-  def convert
-# To Fahrenheit:
-    rescale_to_fahrenheit = 9.0 / 5.0
-    align_to_fahrenheit = 32.0
-    unless @text_celsius.to_s.empty?
-      @text_fahrenheit.value = @text_celsius * rescale_to_fahrenheit + align_to_fahrenheit
-    end
-# To Celsius:
-    rescale_to_celsius = 1.0 / rescale_to_fahrenheit
-    align_to_celsius = -align_to_fahrenheit
+  def calculate_celsius
     unless @text_fahrenheit.to_s.empty?
       @text_celsius.value = (@text_fahrenheit + align_to_celsius) * rescale_to_celsius
     end
+    nil
+  end
+
+  def calculate_fahrenheit
+    unless @text_celsius.to_s.empty?
+      @text_fahrenheit.value = @text_celsius * rescale_to_fahrenheit + align_to_fahrenheit
+    end
+    nil
   end
 
   def entry_celsius(top, pack_standard)
-    @text_celsius = TkVariable.new
-    @entry_celsius = TkEntry.new top, textvariable: @text_celsius
-    @entry_celsius.pack pack_standard
+    @entry_celsius = TkEntry.new top do
+      pack pack_standard
+    end
+    @entry_celsius.textvariable = @text_celsius
     nil
   end
 
   def entry_fahrenheit(top, pack_standard)
-    @text_fahrenheit = TkVariable.new
-    @entry_fahrenheit = TkEntry.new top, textvariable: @text_fahrenheit
-    @entry_fahrenheit.pack pack_standard
+    @entry_fahrenheit = TkEntry.new top do
+      pack pack_standard
+    end
+    @entry_fahrenheit.textvariable = @text_fahrenheit
     nil
   end
 
@@ -86,6 +99,14 @@ class Converter
       pack pack_standard
     end
     nil
+  end
+
+  def rescale_to_celsius
+    1.0 / rescale_to_fahrenheit
+  end
+
+  def rescale_to_fahrenheit
+    9.0 / 5.0
   end
 
   def window_set
