@@ -13,13 +13,28 @@ https://youtu.be/8YbqtLRnrFs
 
 require 'tk'
 
-root = TkRoot.new do
-  title 'First example'
+module Example
+  extend self
+
+  def begin
+    root = TkRoot.new do
+      title 'First example'
+    end
+    label root
+    nil
+  end
+
+  private
+
+  def label(root)
+    TkLabel.new root do
+      text 'A sample GUI using Tk'
+      pack_hash = {side: :left, padx: 15, pady: 15}
+      pack pack_hash
+    end
+    nil
+  end
 end
 
-TkLabel.new root do
-  text 'A sample GUI using Tk'
-  pack padx: 15, pady: 15, side: :left
-end
-
+Example.begin
 Tk.mainloop

@@ -12,7 +12,6 @@ https://youtu.be/OGU-OQD5aWY
 require 'tk'
 
 module HelloName
-
   extend self
 
   def begin(pack_standard)

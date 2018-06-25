@@ -12,7 +12,6 @@ https://youtu.be/xCeEghc9GQk
 require 'tk'
 
 module Converter
-
   extend self
 
   def begin(pack_standard)
