@@ -13,10 +13,51 @@ require 'tk'
 
 class HelloName
   def initialize
-    ph = padx: :y
+    pack_standard = {padx: 50, pady: 30}
+    proc_hello = proc do
+      hello
+    end
+    @text = TkVariable.new
+
+    root = TkRoot.new do
+      title 'Hello, name'
+    end
+
+    top = TkFrame.new root
+
+    TkLabel.new top do
+      text 'Name?'
+      pack pack_standard
+    end
+
+    @entry = TkEntry.new top, textvariable: @text do
+      pack pack_standard
+    end
+
+    TkButton.new top do
+      text 'Say Hello'
+      command proc_hello
+      pack pack_standard
+    end
+
+    TkButton.new top do
+      text 'Exit'
+      command do
+        proc exit
+      end
+      pack pack_standard
+    end
+
+    top.pack fill: :both, side: :top
+  end
+
+  private
+
+  def hello
+# Simply prepending to @text.value didn't work, here.
+    @text.value = @text.value.prepend 'Hello, '
+  end
 end
 
-root = TkRoot.new do
-  title 'First example'
-end
-
+HelloName.new
+Tk.mainloop
