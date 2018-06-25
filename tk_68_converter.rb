@@ -20,8 +20,10 @@ class Converter
     @text_celsius    = TkVariable.new
     @text_fahrenheit = TkVariable.new
 
-    entry_fahrenheit top, pack_standard
-    entry_celsius    top, pack_standard
+# Keep order:
+    entry_fahrenheit top, pack_standard, @text_fahrenheit
+    entry_celsius    top, pack_standard, @text_celsius
+# (End of keep order.)
 
     button_convert top, pack_standard
     button_exit    top, pack_standard
@@ -77,19 +79,19 @@ class Converter
     nil
   end
 
-  def entry_celsius(top, pack_standard)
+  def entry_celsius(top, pack_standard, text_variable)
     @entry_celsius = TkEntry.new top do
       pack pack_standard
     end
-    @entry_celsius.textvariable = @text_celsius
+    @entry_celsius.textvariable = text_variable
     nil
   end
 
-  def entry_fahrenheit(top, pack_standard)
+  def entry_fahrenheit(top, pack_standard, text_variable)
     @entry_fahrenheit = TkEntry.new top do
       pack pack_standard
     end
-    @entry_fahrenheit.textvariable = @text_fahrenheit
+    @entry_fahrenheit.textvariable = text_variable
     nil
   end
 
