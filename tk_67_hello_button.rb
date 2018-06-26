@@ -11,10 +11,10 @@ https://youtu.be/OGU-OQD5aWY
 
 require 'tk'
 
-module HelloName
+module ::HelloName
   extend self
 
-  def begin(pack_standard)
+  def main
     root = window_set
     top = TkFrame.new root
     @text = TkVariable.new
@@ -25,6 +25,7 @@ module HelloName
     button_exit  top, pack_standard
 
     top.pack fill: :both, side: :top
+    Tk.mainloop
     nil
   end
 
@@ -86,5 +87,4 @@ def pack_standard
   {padx: 50, pady: 30}
 end
 
-HelloName.begin pack_standard
-Tk.mainloop
+::HelloName.main

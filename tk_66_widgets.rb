@@ -11,10 +11,10 @@ https://youtu.be/ywVyPusaj_c
 
 require 'tk'
 
-module Widgets
+module ::Widgets
   extend self
 
-  def begin
+  def main
     root = TkRoot.new do
       title 'Multiple Widgets'
     end
@@ -23,6 +23,7 @@ module Widgets
     label        root
     text         root
     message      root
+    Tk.mainloop
     nil
   end
 
@@ -71,5 +72,4 @@ module Widgets
   end
 end
 
-Widgets.begin
-Tk.mainloop
+::Widgets.main

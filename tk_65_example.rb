@@ -13,14 +13,15 @@ https://youtu.be/8YbqtLRnrFs
 
 require 'tk'
 
-module Example
+module ::Example
   extend self
 
-  def begin
+  def main
     root = TkRoot.new do
       title 'First example'
     end
     label root
+    Tk.mainloop
     nil
   end
 
@@ -36,5 +37,4 @@ module Example
   end
 end
 
-Example.begin
-Tk.mainloop
+::Example.main
