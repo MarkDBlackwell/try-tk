@@ -34,7 +34,7 @@ module HelloName
     TkButton.new top do
       text 'Exit'
       command do
-        proc exit
+        proc ::Kernel.exit
       end
       pack pack_standard
     end
