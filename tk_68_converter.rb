@@ -89,6 +89,10 @@ module ::Converter
     nil
   end
 
+  def pack_standard
+    {padx: 10, pady: 10}
+  end
+
   def prompt_choice(top, pack_standard)
     TkLabel.new top do
       text 'Top: Fahrenheit; bottom: Celsius'
@@ -110,10 +114,6 @@ module ::Converter
       title 'Temperature converter'
     end
   end
-end
-
-def pack_standard
-  {padx: 10, pady: 10}
 end
 
 ::Converter.main

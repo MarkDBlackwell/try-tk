@@ -68,6 +68,10 @@ module ::HelloName
     nil
   end
 
+  def pack_standard
+    {padx: 50, pady: 30}
+  end
+
   def prompt_name(top, pack_standard)
     TkLabel.new top do
       text 'Name?'
@@ -81,10 +85,6 @@ module ::HelloName
       title 'Hello, name'
     end
   end
-end
-
-def pack_standard
-  {padx: 50, pady: 30}
 end
 
 ::HelloName.main
