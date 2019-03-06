@@ -1,8 +1,8 @@
-#try-tk
+# try-tk
 
 Try the Tk graphics library (from Ruby).
 
-##See also
+## See also
 
 tutorial-tkdocs
 
